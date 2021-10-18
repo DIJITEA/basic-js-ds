@@ -15,7 +15,7 @@ module.exports = class BinarySearchTree {
     return this.treeRoot;
   }
 
-  add(data ) {
+  add(data) {
     let node = new Node(data);
     let temp = this.treeRoot;
     if (!this.treeRoot) {
@@ -37,11 +37,21 @@ module.exports = class BinarySearchTree {
   }
 
   has(data) {
-    throw new NotImplementedError("Not implemented");
+    return !this.find(data) ? false : true;
   }
 
   find(data) {
-    throw new NotImplementedError("Not implemented");
+    let temp = this.treeRoot;
+    return traverse(temp);
+    function traverse(node) {
+      return !node
+        ? null
+        : node.data === data
+        ? node
+        : node.data < data
+        ? traverse(node.right)
+        : traverse(node.left);
+    }
   }
 
   remove(/*data*/) {
